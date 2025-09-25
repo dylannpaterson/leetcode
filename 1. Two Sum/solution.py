@@ -9,10 +9,16 @@ class Solution(object):
         if len(nums) == 2:
             return [0,1]
         
-        for ii in range(len(nums)):
-            for jj in range(len(nums)):
-            
-                if ii == jj:
-                    continue
-                elif nums[ii] + nums[jj] == target:
-                    return [ii,jj]
+        done = {}
+        
+        for ii, n in enumerate(nums):
+                
+            if ii == 0:
+                done[n] = ii
+            else:
+                difference = target - n
+
+                if difference in done.keys():
+                    return [done[difference],ii]
+                else:
+                   done[n] = ii
