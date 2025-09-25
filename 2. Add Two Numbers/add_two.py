@@ -1,0 +1,73 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def list2ListNode(lst):
+        lst.reverse()
+        for ii,l in enumerate(lst):
+            if ii == 0:
+                current = ListNode(l)  
+            else:
+                current = ListNode(l,previous)
+                
+            previous = current
+        return current
+    
+    def compareLinkedList(l1,l2):
+
+        lists_same = True
+
+        while l1 is not None and l2 is not None:
+            lists_same = lists_same and l1.val == l2.val
+
+            l1 = l1.next
+            l2 = l2.next
+
+        lists_same = lists_same and l1 is None and l2 is None
+        
+        return lists_same
+
+
+
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: Optional[ListNode]
+        :type l2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        carry_over = 0
+
+        digits = []
+
+        current_node_l1 = l1
+        current_node_l2 = l2
+
+        while current_node_l1 is not None or current_node_l2 is not None:
+
+            if current_node_l1 is not None and current_node_l2 is not None:
+                digit_sum = current_node_l1.val + current_node_l2.val + carry_over
+                current_node_l1 = current_node_l1.next
+                current_node_l2 = current_node_l2.next
+            elif current_node_l1 is not None:
+                digit_sum = current_node_l1.val + carry_over
+                current_node_l1 = current_node_l1.next
+            else:
+                digit_sum = current_node_l2.val + carry_over
+                current_node_l2 = current_node_l2.next
+
+            carry_over = int(digit_sum/10)
+
+            digit = digit_sum % 10
+
+            digits.append(digit)
+
+        if carry_over > 0:
+            digits.append(carry_over)
+
+        return(ListNode.list2ListNode(digits))
+
+
+
+            
