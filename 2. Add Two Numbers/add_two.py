@@ -70,8 +70,4 @@ class Solution(object):
         if carry_over > 0:
             digits.append(carry_over)
 
-        return(ListNode.list2ListNode(digits))
-
-
-
-            
+        return(ListNode.list2ListNode(digits))   
