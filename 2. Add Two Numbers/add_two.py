@@ -40,7 +40,8 @@ class Solution(object):
         """
         carry_over = 0
 
-        digits = []
+        first_node = ListNode(0)
+        current_node = first_node
 
         current_node_l1 = l1
         current_node_l2 = l2
@@ -65,9 +66,13 @@ class Solution(object):
 
             digit = digit_sum % 10
 
-            digits.append(digit)
+            next_node = ListNode(digit)
+            current_node.next = next_node
+            current_node = current_node.next
+
 
         if carry_over > 0:
-            digits.append(carry_over)
+            next_node = ListNode(carry_over)
+            current_node.next = next_node
 
-        return(ListNode.list2ListNode(digits))   
+        return(first_node.next)   
