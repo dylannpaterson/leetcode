@@ -4,7 +4,7 @@ class ListNode:
         self.next = next
 
     def list2ListNode(lst):
-        
+
         first_node = ListNode(lst[0])
         current_node = first_node
         
@@ -47,16 +47,19 @@ class Solution(object):
 
         while current_node_l1 is not None or current_node_l2 is not None:
 
-            if current_node_l1 is not None and current_node_l2 is not None:
-                digit_sum = current_node_l1.val + current_node_l2.val + carry_over
-                current_node_l1 = current_node_l1.next
-                current_node_l2 = current_node_l2.next
-            elif current_node_l1 is not None:
-                digit_sum = current_node_l1.val + carry_over
-                current_node_l1 = current_node_l1.next
+            if current_node_l1 is None:
+                current_val_l1 = 0
             else:
-                digit_sum = current_node_l2.val + carry_over
+                current_val_l1 = current_node_l1.val
+                current_node_l1 = current_node_l1.next
+
+            if current_node_l2 is None:
+                current_val_l2 = 0
+            else:
+                current_val_l2 = current_node_l2.val
                 current_node_l2 = current_node_l2.next
+
+            digit_sum = current_val_l1 + current_val_l2 + carry_over
 
             carry_over = int(digit_sum/10)
 
