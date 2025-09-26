@@ -75,4 +75,4 @@ class Solution(object):
             next_node = ListNode(carry_over)
             current_node.next = next_node
 
-        return(first_node.next)   
+        return(first_node.next)
