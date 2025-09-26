@@ -4,15 +4,16 @@ class ListNode:
         self.next = next
 
     def list2ListNode(lst):
-        lst.reverse()
-        for ii,l in enumerate(lst):
-            if ii == 0:
-                current = ListNode(l)  
-            else:
-                current = ListNode(l,previous)
-                
-            previous = current
-        return current
+        
+        first_node = ListNode(lst[0])
+        current_node = first_node
+        
+        for l in lst[1:]:
+            next_node = ListNode(l)
+            current_node.next = next_node
+            current_node = next_node
+
+        return first_node
     
     def compareLinkedList(l1,l2):
 
